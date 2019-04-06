@@ -27,18 +27,30 @@ class App extends Component {
   };
 
   switchNameHandler = (newName, index) => {
-    const persons = this.state.persons;
+    const persons = [...this.state.persons];
     persons[index].name = newName;
     this.setState({ persons });
   };
 
+  switchAgeHandler = (newAge, index) => {
+    const persons = [...this.state.persons];
+    persons[index].age = newAge;
+    this.setState({ persons });
+  };
+
   deletePersonHandler = (personIndex) => {
-    console.log('Teste');
-    const persons = this.state.persons;
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
 
     this.setState({ persons });
   };
+
+  addNewPerson = () => {
+    this.setState({persons: [...this.state.persons, {
+      name: null,
+      age: null
+    }]})
+  }
 
   render() {
     let persons = null;
@@ -50,7 +62,8 @@ class App extends Component {
           name={person.name}
           age={person.age}
           delete={() => this.deletePersonHandler(index)}
-          change={(newName) => this.switchNameHandler(newName, index)}
+          changeName={(newName) => this.switchNameHandler(newName, index)}
+          changeAge={(newAge) => this.switchAgeHandler(newAge, index)}
         />
       ));
     }
@@ -60,6 +73,7 @@ class App extends Component {
         <button onClick={this.togglePersons}>
           {this.state.showPersons ? 'Hide' : 'Show'} Persons
         </button>
+        <button onClick={this.addNewPerson}>Add new Person</button>
         {persons}
       </div>
     );

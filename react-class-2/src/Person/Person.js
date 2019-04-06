@@ -4,13 +4,21 @@ const Person = (props) => {
   return React.createElement(
     'div',
     null,
-    React.createElement('p', {}, `I'm ${props.name}, age ${props.age}`),
+    React.createElement('p', {}, (props.name && props.age) ? `I'm ${props.name}, age ${props.age}` : 'I\'m nobody'),
     React.createElement('input', {
       defaultValue: props.name,
+      placeholder: 'Name',
       onChange: (event) => {
-        props.change(event.target.value);
+        props.changeName(event.target.value);
       },
     }),
+    React.createElement('input', {
+        defaultValue: props.age,
+        placeholder: 'Age',
+        onChange: (event) => {
+          props.changeAge(event.target.value);
+        },
+      }),
     React.createElement(
       'button',
       {
