@@ -1,9 +1,14 @@
 import React from 'react';
+import Validation from './Validation';
+import './Person.css';
 
 const Person = (props) => {
   return React.createElement(
-    'div',
-    null,
+    Validation,
+    {
+        text: props.name,
+        className: 'Person'
+    },
     React.createElement('p', {}, (props.name && props.age) ? `I'm ${props.name}, age ${props.age}` : 'I\'m nobody'),
     React.createElement('input', {
       defaultValue: props.name,
