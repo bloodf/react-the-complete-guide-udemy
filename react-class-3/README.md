@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Importante notes on class
 
-## Available Scripts
+Você pode executar scoped styles internament com plugins como Radium ou pelo WebPack com CSS Loader.
 
-In the project directory, you can run:
+## Radium
 
-### `npm start`
+`yarn add radium`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Quando exportar seu componente, você deve utilizar o Radium como high order function.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```JS
+import React from 'react';
+import Radium from 'radium';
 
-### `npm test`
+const style = {
+  color: 'red',
+  ':hover': {
+    color: 'blue',
+  }
+};
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const Componente = (prop) => React.createElement('p', {
+style,
+});
 
-### `npm run build`
+export default Radium(Componente);
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## CSS Loader
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Para utilizar o CSS loader, você deve primeiro, ejetar os arquivos de configurações do WebPack do Create-React-App.
+Alterar o arquivo `webpack.config.js` aonde seria chamado o loader de CSS.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Adicionar as linhas `localIdentName: '[name]__[local]__[hash:base64:5]',` e `modules: true,`.
 
-### `npm run eject`
+```JS
+return {
+  test: cssRegex,
+    exclude: cssModuleRegex,
+    use: getStyleLoaders({
+      importLoaders: 1,
+      modules: true,
+      localIdentName: '[name]__[local]__[hash:base64:5]',
+      sourceMap: isEnvProduction && shouldUseSourceMap,
+    })
+    }
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Assim você pode importar os arquivos CSS como objetos dentro do JS e utilizar eles internamente como Scoped Styles.
+```JS
+import React from 'react';
+import css from './App.css';
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+const App = (prop) => React.createElement('div', {
+  className: css.App,
+});
+```
