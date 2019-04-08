@@ -41,7 +41,11 @@ const BuildControls = (props) => (
       ))}
     </main>
     <footer>
-      <button className={CSS.OrderButton} disabled={!props.purchasable}>
+      <button
+        className={CSS.OrderButton}
+        disabled={!props.purchasable}
+        onClick={props.ordered}
+      >
         Order Now
       </button>
     </footer>

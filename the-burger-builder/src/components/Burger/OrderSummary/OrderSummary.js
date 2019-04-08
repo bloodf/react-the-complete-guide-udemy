@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Button from '../../UI/Buttons/Button';
 
 const OrderSummary = (props) => {
   const ingredients = props.ingredients ? (
@@ -15,9 +16,17 @@ const OrderSummary = (props) => {
       <header>
         <h1>Your Order</h1>
       </header>
-      <main>{ingredients}</main>
+      <main>
+        {ingredients}
+        <h2>Total: ${props.total.toFixed(2)}</h2>
+      </main>
       <footer>
-        <button>Checkout</button>
+        <Button click={props.cancel} type='Danger'>
+          Cancel Order
+        </Button>
+        <Button click={props.checkout} type='Success'>
+          Checkout
+        </Button>
       </footer>
     </section>
   );

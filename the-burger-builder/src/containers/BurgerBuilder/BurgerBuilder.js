@@ -22,6 +22,7 @@ class BurgerBuilder extends Component {
     },
     totalPrice: INGREDIENT_PRICES.burger,
     purchasable: false,
+    purchasing: false,
   };
 
   updatePurchase = () => {
@@ -61,6 +62,28 @@ class BurgerBuilder extends Component {
     );
   };
 
+  toggleCheckout = () => {
+    this.setState((prevState) => ({ purchasing: !prevState.purchasing }));
+  };
+
+  cancelOrder = () => {
+    this.setState(
+      (prevState) => ({
+        purchasing: false,
+        ingredients: {
+          ...Object.keys(prevState.ingredients).reduce(
+            (acc, curr) => ({ ...acc, [curr]: 0 }),
+            {},
+          ),
+        },
+        totalPrice: INGREDIENT_PRICES.burger,
+      }),
+      () => {
+        this.updatePurchase();
+      },
+    );
+  };
+
   render() {
     const disabledInfo = Object.keys(this.state.ingredients).reduce(
       (acc, curr) => ({ ...acc, [curr]: this.state.ingredients[curr] <= 0 }),
@@ -76,9 +99,14 @@ class BurgerBuilder extends Component {
           removed={(type) => this.changeIngredient(type, -1)}
           disabled={disabledInfo}
           purchasable={this.state.purchasable}
+          ordered={this.toggleCheckout}
         />
-        <Modal>
-          <OrderSummary ingredients={this.state.ingredients} />
+        <Modal show={this.state.purchasing} hide={this.toggleCheckout}>
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            total={this.state.totalPrice}
+            cancel={this.cancelOrder}
+          />
         </Modal>
       </Fragment>
     );
