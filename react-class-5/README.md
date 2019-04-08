@@ -28,7 +28,7 @@
 
 - Melhor prática: Não utilizar nada que possa gerar re-render ou manipulações para não causar nenhum side effect.
 
-2 - `shouldComponentUpdate(nextProps, nextState)` : Este hook, pode cancelar a atualização do componente caso necessário. 
+2 - `shouldComponentUpdate(nextProps, nextState)` : Este hook, pode cancelar a atualização do componente caso necessário.
 ** ATENÇÃO **: Este hook caso usado errado, pode causar problemas na renderização ou nos outros hooks.
 
 3 - `render()` (** VUE **`render()`): Renderização do componente.
@@ -59,7 +59,10 @@ import React, { useEffect } from 'react';
 const Componente = (props) => {
   useEffect(() => {
     console.log('Componente atualizado');
-  })
+    return () => {
+      console.log('Componente desmontado');
+    }
+  },[] // Execução inicial somente);
 
   return React.createElement('div', null, 'Componente');
 }
