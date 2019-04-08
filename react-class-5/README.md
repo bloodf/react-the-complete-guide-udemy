@@ -1,57 +1,15 @@
 # Notas imporantes da aula
 
-Você pode executar scoped styles internament com plugins como Radium ou pelo WebPack com CSS Loader.
+## Lifecycle Hooks
 
-## Radium
+1 - `constructor(props)` : ES6 Default -> Melhor prática: Não utilizar nada que possa gerar re-render ou manipulações para não causar nenhum side effect. Definir estado / state do componente.
 
-`yarn add radium`
+2 - `getDerivedStateFromProps(props, state)` : Equivalente ao Watch do Vue, quando um prop altera, você pode alterar o estado / state do componente. -> Melhor prática: Não utilizar nada que possa gerar re-render ou manipulações para não causar nenhum side effect.
 
-Quando exportar seu componente, você deve utilizar o Radium como high order function.
+3 - `render()` : Rendirização do componente. Melhor prática: Tomar cuidado com o que é definido aqui, pois ele vai ser chamado toda vez que houver um re-render, nada que possa bloquear o processo de renderização.
 
-```JS
-import React from 'react';
-import Radium from 'radium';
+3.1 - Renderização dos componentes filhos / child components.
 
-const style = {
-  color: 'red',
-  ':hover': {
-    color: 'blue',
-  }
-};
+4 - `componentDidMount()` : Normalmente utilizado após a renderização, para por exemplo buscar dados via HTTP, mudar LocaStorage e afins. Pois sempre é executado após a renderização do compoente. ** ATENÇÃO **: Nunca alterar dados do estado / state aqui, pois vai re-renderizar os componente, causando Loop infinito.
 
-const Componente = (prop) => React.createElement('p', {
-style,
-});
-
-export default Radium(Componente);
-```
-
-## CSS Loader
-
-Para utilizar o CSS loader, você deve primeiro, ejetar os arquivos de configurações do WebPack do Create-React-App.
-Alterar o arquivo `webpack.config.js` aonde seria chamado o loader de CSS.
-
-Adicionar as linhas `localIdentName: '[name]__[local]__[hash:base64:5]',` e `modules: true,`.
-
-```JS
-return {
-  test: cssRegex,
-    exclude: cssModuleRegex,
-    use: getStyleLoaders({
-      importLoaders: 1,
-      modules: true,
-      localIdentName: '[name]__[local]__[hash:base64:5]',
-      sourceMap: isEnvProduction && shouldUseSourceMap,
-    })
-    }
-```
-
-Assim você pode importar os arquivos CSS como objetos dentro do JS e utilizar eles internamente como Scoped Styles.
-```JS
-import React from 'react';
-import css from './App.css';
-
-const App = (prop) => React.createElement('div', {
-  className: css.App,
-});
-```
+5 - 

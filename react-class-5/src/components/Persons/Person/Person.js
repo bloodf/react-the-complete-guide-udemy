@@ -3,6 +3,8 @@ import Validation from './Validation';
 import css from './Person.css';
 
 const Person = (props) => {
+  console.log('[Person.js] rendering...');
+  
   return React.createElement(
     Validation,
     {

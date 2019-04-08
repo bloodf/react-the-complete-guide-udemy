@@ -5,23 +5,41 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    showPersons: true,
-    persons: [
-      {
-        name: 'Heitor',
-        age: 31,
-      },
-      {
-        name: 'Raquel',
-        age: 35,
-      },
-      {
-        name: 'Marco',
-        age: 3,
-      },
-    ],
-  };
+  constructor(props) {
+    super(props);
+
+    console.log('[App.js] Constructor');
+    console.table(props);
+
+    this.state = {
+      showPersons: true,
+      persons: [
+        {
+          name: 'Heitor',
+          age: 31,
+        },
+        {
+          name: 'Raquel',
+          age: 35,
+        },
+        {
+          name: 'Marco',
+          age: 3,
+        },
+      ],
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps');
+    console.log(props, state);
+
+    return state;
+  }
+
+  componentDidMount(){
+    console.log('[App.js] componentDidMount()');
+  }
 
   togglePersons = () => {
     this.setState({ showPersons: !this.state.showPersons });
