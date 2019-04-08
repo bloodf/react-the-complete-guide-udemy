@@ -1,6 +1,6 @@
 # [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux/)
 
-Status do Curso: 162 de 503
+Status do Curso: 183 de 503
 
 # Status
 1. [x] Getting Started - 10/10
@@ -10,7 +10,7 @@ Status do Curso: 162 de 503
 5. [x] Styling React Components & Elements - 12/12
 6. [x] Debugging React Apps - 7/7
 7. [X] Diving Deeper into Components & React Internals - 63/63
-8. [ ] A Real App: The Burger Builder (Basic Version) - 20/41
+8. [X] A Real App: The Burger Builder (Basic Version) - 41/41
 9. [ ] Reaching out to the Web (Http / Ajax) - 0/18
 10. [ ] Burger Builder Project: Accessing a Server - 0/10
 11. [ ] Multi-Page-Feeling in a Single-Page-App: Routing - 0/34
