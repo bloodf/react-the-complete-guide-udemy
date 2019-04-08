@@ -3,6 +3,8 @@ import css from './App.css';
 
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Aux from '../hoc/Aux';
+import withClass from '../hoc/withClass';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class App extends Component {
       persons: [
         {
           name: 'Heitor',
-          age: 31,
+          age: false,
         },
         {
           name: 'Raquel',
@@ -101,7 +103,7 @@ class App extends Component {
     }
 
     return (
-      <div className={css.App}>
+      <Aux>
         <button
           onClick={() =>
             this.setState({ showCockpit: !this.state.showCockpit })
@@ -119,9 +121,9 @@ class App extends Component {
         ) : null}
         <hr />
         {persons}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, css.App);

@@ -77,6 +77,96 @@ export default Componente;
 
 ```
 
+## Memorização de dados
+
+Você pode utilizar a função `memo` presente no React, para memorizar os dados do componente funcional, fazendo assim que ele só re-renderize quando houver mudanças em seus dados.
+
+## PureComponent
+
+Você pode extender o `PureComponent` ao invés de `Component` para ja ter aplicado regra de re-renderização quando somente, houver a mudança dos dados.
+
+## Rootless Render
+
+Para fazer um Rootless render, você tem a possibilidade de encorporarar os elementos dentro de um Array, e atribuindo Key, Utilizando um High Order Componente que retornar os filhos do compoente ou usando o `React.fragment`, presente somente no React 16.2+
+
+```JS
+// Array de componentes
+import React, {Component} from 'react';
+
+class Component extends Component {
+  render (){
+    return [
+      <div key={1}>1</div>,
+      <div key={2}>2</div>,
+      <div key={3}>3</div>,
+    ];
+  }
+}
+```
+
+```JS
+//High Order Componente
+const hoc = (props) => props.children;
+
+export default hoc
+```
+
+```JS
+// React Fragment
+import React, {Component, Fragment} from 'react';
+
+class Component extends Component {
+  render (){
+    <Fragment>
+      <div>1</div>,
+      <div>2</div>,
+      <div>3</div>,
+    </Fragment>
+  }
+}
+```
+
+## SetState com dados anteriores à chamada
+
+**RECOMENDADO** A função `setState` pode receber como primeiro argumento uma função anônima na qual, ela tem como parâmetro o `prevState` e `props`.
+
+```JS
+import React, {Component, Fragment} from 'react';
+
+class Component extends Component {
+  decrease = () => {
+    this.setState((prevState, props) => ({
+      counter: prevState + 1,
+    }));
+  }
+}
+```
+
+## Definindo tipos dos Props
+
+No React, diferente do Vue, você não tem como definir no prop qual o tipo dele por padrão, assim temos de usar uma lib de terceiros chamada `prop-types`, você pode instalar ela com o comando `$ yarn add prop-types` e importar ela no seu componente.
+
+```JS
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+class Component extends Component {
+  render() {
+    return <div>{this.props.textString}</div>;
+  }
+}
+
+Component.propTypes = {
+  textString: PropTypes.string,
+}
+
+export default Component;
+```
+
+## Referências internas
+
+Assim como no Vue, o React tem a propiedade ref, na qual você pode passar uma função anônima, `(element) => { element.focus(); }` o qual o primeiro parâmetro é o elemento que está sendo referenciado.
+
 ## Notes
 
 - `componentWillMount` foi removido nos lifeCycle hooks. Utilizar o `static getDerivedStateFromProps(props, state)` ao invés.

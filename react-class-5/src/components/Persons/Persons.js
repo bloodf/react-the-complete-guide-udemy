@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Person from './Person/Person';
 class Persons extends Component {
   // static getDerivedStateFromProps(props, state) {
@@ -6,9 +7,19 @@ class Persons extends Component {
   //   return state;
   // }
 
+  propTypes = {
+    persons: PropTypes.checkPropTypes({
+      age: PropTypes.number,
+      name: PropTypes.string,
+    }, this.props),
+    changeAge: PropTypes.func,
+    delete: PropTypes.func,
+    changeName: PropTypes.func,
+  };
+
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[Persons.js] shouldComponentUpdate');
-    if(nextProps.persons !== this.props.persons){
+    if (nextProps.persons !== this.props.persons) {
       return true;
     } else {
       return false;
@@ -24,8 +35,8 @@ class Persons extends Component {
     console.log('[Persons.js] componentDidUpdate');
     console.log(snapshot);
   }
-  
-  componentWillUnmount(){
+
+  componentWillUnmount() {
     console.log('[Persons.js] componentWillUnmount');
   }
 

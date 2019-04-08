@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Validation from './Validation';
 import css from './Person.css';
 
 class Person extends Component {
+  componentDidMount() {
+    this.inputElement.focus();
+  }
 
   render() {
     console.log('[Person.js] rendering...');
@@ -21,6 +25,9 @@ class Person extends Component {
           : "I'm nobody",
       ),
       React.createElement('input', {
+        ref: (inputEl) => {
+          this.inputElement = inputEl;
+        },
         defaultValue: this.props.name,
         placeholder: 'Name',
         onChange: (event) => {
@@ -44,5 +51,13 @@ class Person extends Component {
     );
   }
 }
+
+Person.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changeAge: PropTypes.func,
+  delete: PropTypes.func,
+  changeName: PropTypes.func,
+};
 
 export default Person;
