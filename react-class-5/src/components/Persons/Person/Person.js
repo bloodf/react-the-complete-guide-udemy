@@ -1,45 +1,67 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Validation from './Validation';
 import css from './Person.css';
 
-const Person = (props) => {
-  console.log('[Person.js] rendering...');
-  
-  return React.createElement(
-    Validation,
-    {
-      text: props.name,
-      className: css.Person,
-    },
-    React.createElement(
-      'p',
-      {},
-      props.name && props.age
-        ? `I'm ${props.name}, age ${props.age}`
-        : "I'm nobody",
-    ),
-    React.createElement('input', {
-      defaultValue: props.name,
-      placeholder: 'Name',
-      onChange: (event) => {
-        props.changeName(event.target.value);
-      },
-    }),
-    React.createElement('input', {
-      defaultValue: props.age,
-      placeholder: 'Age',
-      onChange: (event) => {
-        props.changeAge(event.target.value);
-      },
-    }),
-    React.createElement(
-      'button',
+class Person extends Component {
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('[Persons.js] getDerivedStateFromProps');
+
+  //   return state;
+  // }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[Persons.js] shouldComponentUpdate');
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[Persons.js] getSnapshotBeforeUpdate');
+    return null;
+  }
+
+  componentDidUpdate() {
+    console.log('[Persons.js] componentDidUpdate');
+  }
+
+  render() {
+    console.log('[Person.js] rendering...');
+
+    return React.createElement(
+      Validation,
       {
-        onClick: props.delete,
+        text: this.props.name,
+        className: css.Person,
       },
-      `[X]`,
-    ),
-  );
-};
+      React.createElement(
+        'p',
+        {},
+        this.props.name && this.props.age
+          ? `I'm ${this.props.name}, age ${this.props.age}`
+          : "I'm nobody",
+      ),
+      React.createElement('input', {
+        defaultValue: this.props.name,
+        placeholder: 'Name',
+        onChange: (event) => {
+          this.props.changeName(event.target.value);
+        },
+      }),
+      React.createElement('input', {
+        defaultValue: this.props.age,
+        placeholder: 'Age',
+        onChange: (event) => {
+          this.props.changeAge(event.target.value);
+        },
+      }),
+      React.createElement(
+        'button',
+        {
+          onClick: this.props.delete,
+        },
+        `[X]`,
+      ),
+    );
+  }
+}
 
 export default Person;

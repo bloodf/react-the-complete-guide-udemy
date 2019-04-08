@@ -37,7 +37,7 @@ class App extends Component {
     return state;
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log('[App.js] componentDidMount()');
   }
 
