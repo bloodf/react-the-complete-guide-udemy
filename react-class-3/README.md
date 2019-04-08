@@ -1,4 +1,4 @@
-# Importante notes on class
+# Notas imporantes da aula
 
 Você pode executar scoped styles internament com plugins como Radium ou pelo WebPack com CSS Loader.
 

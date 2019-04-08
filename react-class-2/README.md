@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Importante notes on class
 
-## Available Scripts
+## Handlers e Métodos
 
-In the project directory, you can run:
+Todos os métodos dentro da classe do React, sofrem com o problema do bind do this.
 
-### `npm start`
+Assim é mais seguro ao fazer um método que irá chamar alguem internamente, utilizar ele como arrow function.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```JS
+import React, { Component } from 'react';
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+class App extends Component {
+  state = {
+    aula: 1,
+  }
 
-### `npm test`
+  changeAulaHandler = (aula) => {
+    this.setState({aula});
+  }
+}
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Execução de função dentro do render
 
-### `npm run build`
+Dentro do JSX você pode cair em problemas com o bind do this também. Assim para circular este problema você pode trabalhar de duas formas.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Utilizando o bind
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```JS
+import React, { Component } from 'react';
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+class App extends Component {
+  state = {
+    aula: 1,
+  }
 
-### `npm run eject`
+  changeAulaHandler = (aula) => {
+    this.setState({aula});
+  }
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  render(){
+    return (
+      <button onClick={this.changeAulaHandler.bind(this, 2)}>Mudar Aula</button>
+    )
+  }
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Utilizando o arrow function
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```JS
+import React, { Component } from 'react';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+class App extends Component {
+  state = {
+    aula: 1,
+  }
 
-## Learn More
+  changeAulaHandler = (aula) => {
+    this.setState({aula});
+  }
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  render(){
+    return (
+      <button onClick={() => this.changeAulaHandler(2)}>Mudar Aula</button>
+    )
+  }
+}
+```
