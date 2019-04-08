@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import css from './App.css';
 
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -61,26 +62,24 @@ class App extends Component {
     let persons = null;
 
     if (this.state.showPersons) {
-      persons = this.state.persons.map((person, index) => (
-        <Person
-          key={index}
-          name={person.name}
-          age={person.age}
-          delete={() => this.deletePersonHandler(index)}
-          changeName={(newName) => this.switchNameHandler(newName, index)}
-          changeAge={(newAge) => this.switchAgeHandler(newAge, index)}
+      persons = (
+        <Persons
+          persons={this.state.persons}
+          delete={this.deletePersonHandler}
+          changeName={this.switchNameHandler}
+          changeAge={this.switchAgeHandler}
         />
-      ));
+      );
     }
 
     return (
       <div className={css.App}>
-        <button className={css.btn} onClick={this.togglePersons}>
-          {this.state.showPersons ? 'Hide' : 'Show'} Persons
-        </button>
-        <button className={css.btn} onClick={this.addNewPerson}>
-          Add new Person
-        </button>
+        <Cockpit
+          togglePersons={this.togglePersons}
+          addNewPerson={this.addNewPerson}
+          showPersons={this.state.showPersons}
+        />
+        <hr />
         {persons}
       </div>
     );
