@@ -1,11 +1,26 @@
-import React, {Fragment} from 'react';
+import React, { Fragment, Component } from 'react';
 import CSS from './Layout.css';
+import ToolBar from '../Navigation/Toolbar/Toolbar';
+import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
-const Layout = (props) => (
-  <Fragment>
-    <div>ToolBar, SideDrawer, BackDrop</div>
-    <main className={CSS.Container}>{props.children}</main>
-  </Fragment>
-);
+class Layout extends Component {
+  state = {
+    visibleMenu: false,
+  };
+
+  showMenu = () => {
+    this.setState((prevState) => ({ visibleMenu: !prevState.visibleMenu }));
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <ToolBar showMenu={this.showMenu} />
+        <SideDrawer visible={this.state.visibleMenu} hide={this.showMenu} />
+        <main className={CSS.Container}>{this.props.children}</main>
+      </Fragment>
+    );
+  }
+}
 
 export default Layout;
