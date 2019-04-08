@@ -3,10 +3,10 @@
 Status do Curso: 92 de 503
 
 # Status
-- Seção 1 - Done
-- Seção 2 - Done
-- Seção 3 - Done
-- Seção 4 - Done
-- Seção 5 - Done
-- Seção 6 - Done
-- Seção 7 - Aula 93
+- Getting Started - 10/10
+- Refreshing Next Generation JavaScript (Optional) - 13/13
+- Understanding the Base Features & Syntax - 26/26
+- Working with Lists and Conditionals - 12/12
+- Styling React Components & Elements - 12/12
+- Debugging React Apps - 7/7
+- Diving Deeper into Components & React Internals - 14/63
