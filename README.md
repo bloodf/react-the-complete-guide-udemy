@@ -1,4 +1,6 @@
-# Aulas de React
+# [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux/)
+
+Status do Curso: 92 de 503
 
 # Status
 - Seção 1 - Done
