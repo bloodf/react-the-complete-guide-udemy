@@ -28,7 +28,7 @@ export default Radium(Componente);
 
 ## CSS Loader
 
-Para utilizar o CSS loader, você deve primeiro, ejetar os arquivos de configurações do WebPack do Create-React-App.
+Para utilizar o CSS loader, você deve primeiro, ejetar os arquivos de configurações do WebPack do Create-React-App, com o comando `yarm eject`.
 Alterar o arquivo `webpack.config.js` aonde seria chamado o loader de CSS.
 
 Adicionar as linhas `localIdentName: '[name]__[local]__[hash:base64:5]',` e `modules: true,`.

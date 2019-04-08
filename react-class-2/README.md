@@ -1,4 +1,4 @@
-# Importante notes on class
+# Notas imporantes da aula
 
 ## Handlers e Métodos
 
