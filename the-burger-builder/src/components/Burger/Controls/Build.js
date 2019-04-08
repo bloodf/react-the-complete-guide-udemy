@@ -24,18 +24,27 @@ const controls = [
 
 const BuildControls = (props) => (
   <section className={CSS.Controls}>
-    <p>
-      <strong>{props.price.toFixed(2)}</strong>
-    </p>
-    {controls.map((control, index) => (
-      <BuildControl
-        key={control.type}
-        label={control.label}
-        disabled={props.disabled[control.type]}
-        added={() => props.added(control.type)}
-        removed={() => props.removed(control.type)}
-      />
-    ))}
+    <header>
+      <p>
+        <strong>{props.price.toFixed(2)}</strong>
+      </p>
+    </header>
+    <main>
+      {controls.map((control, index) => (
+        <BuildControl
+          key={control.type}
+          label={control.label}
+          disabled={props.disabled[control.type]}
+          added={() => props.added(control.type)}
+          removed={() => props.removed(control.type)}
+        />
+      ))}
+    </main>
+    <footer>
+      <button className={CSS.OrderButton} disabled={!props.purchasable}>
+        Order Now
+      </button>
+    </footer>
   </section>
 );
 
