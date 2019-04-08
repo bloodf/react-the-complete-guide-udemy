@@ -7,4 +7,4 @@
 - Seção 4 - Done
 - Seção 5 - Done
 - Seção 6 - Done
-- Seção 7
+- Seção 7 - Aula 93
