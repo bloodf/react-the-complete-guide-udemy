@@ -1,18 +1,17 @@
 import React from 'react';
 import Validation from './Validation';
-import './Person.css';
+import css from './Person.css';
 
 const Person = (props) => {
   return React.createElement(
     Validation,
     {
       text: props.name,
+      className: css.Person,
     },
     React.createElement(
       'p',
-      {
-        className: 'Person',
-      },
+      {},
       props.name && props.age
         ? `I'm ${props.name}, age ${props.age}`
         : "I'm nobody",

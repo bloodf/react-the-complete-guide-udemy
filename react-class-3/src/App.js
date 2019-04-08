@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import './App.css';
+import css from './App.css';
 
 import Person from './Person/Person';
 
@@ -47,11 +46,16 @@ class App extends Component {
   };
 
   addNewPerson = () => {
-    this.setState({persons: [...this.state.persons, {
-      name: null,
-      age: null
-    }]})
-  }
+    this.setState({
+      persons: [
+        ...this.state.persons,
+        {
+          name: '',
+          age: '',
+        },
+      ],
+    });
+  };
 
   render() {
     let persons = null;
@@ -69,20 +73,16 @@ class App extends Component {
       ));
     }
 
-    const btnStyle = {
-      backgroundColor: 'green',
-      fontSize: '16px',
-      padding: '10px',    
-    }
-
     return (
-        <div className='App'>
-          <button style={btnStyle} onClick={this.togglePersons}>
-            {this.state.showPersons ? 'Hide' : 'Show'} Persons
-          </button>
-          <button onClick={this.addNewPerson}>Add new Person</button>
-          {persons}
-        </div>
+      <div className={css.App}>
+        <button className={css.btn} onClick={this.togglePersons}>
+          {this.state.showPersons ? 'Hide' : 'Show'} Persons
+        </button>
+        <button className={css.btn} onClick={this.addNewPerson}>
+          Add new Person
+        </button>
+        {persons}
+      </div>
     );
   }
 }

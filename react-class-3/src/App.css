@@ -2,3 +2,16 @@
   text-align: center;
   padding: 30px;
 }
+
+.btn {
+  padding: 8px 4px;
+  border-radius: 3px;
+  background-color: rgb(184, 184, 184);
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+  margin: 10px;
+}
+.btn:hover {
+  border-bottom-color: rgb(133, 133, 133);
+  border-right-color: rgb(133, 133, 133);
+}
