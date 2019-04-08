@@ -51,6 +51,7 @@
 6 - `componentWillUnmount()` (**VUE** -> `beforeDestroy()`): Executado quando o componente for desmontado. Normalmente utilizado para limpeza de dados e componente.
 
 ## Lifecycle Hooks componentes funcionais
+
 Para ter acesso aos Lifecycle Hooks dentro de um componente funcionar, você deve utilizar os ReactHooks que foram apresentados no React 16+
 
 1 - `useEffect(() => {}, [])` : Recebe um callback como parâmetro, que será executado toda vez que o componente tiver um lifecycle hook executado. Recebe um array de variaveis que podem ser alteradas, causando o uso do Hook somente quando estas variaveis realmente forem alteradas. Caso o array seja vazio, ele só será executado na primeira vez. Se você retornar uma função anonima, ela será executada na destruição do componente.
@@ -163,9 +164,150 @@ Component.propTypes = {
 export default Component;
 ```
 
-## Referências internas
+## Referências internas - Class Component
 
-Assim como no Vue, o React tem a propiedade ref, na qual você pode passar uma função anônima, `(element) => { element.focus(); }` o qual o primeiro parâmetro é o elemento que está sendo referenciado.
+Assim como no Vue, o React tem a propiedade ref, na qual você pode passar uma função anônima, `(element) => { this.element = element; }` o qual o primeiro parâmetro é o elemento que está sendo referenciado.
+
+### createRef - React 16.3+
+
+Na versão 16.3+ do React, você tem uma função chamada, `createRef` que você pode instanciar no construtor da classe, assim quando tiver de chamar o ref do elemento não precisa executar a função anônima. Ao chamar o elemento, você tem de lembrar que agora ele é um objeto, e para acessar o elemento corrente, deve utilizar o `.current`.
+
+```JS
+import React, { Component } from 'react';
+
+class Person extends Component {
+
+  constructor(props){
+    super(props);
+
+    this.inputElement = React.createRef();
+  }
+
+  
+  componentDidMount() {
+    this.inputElement.current.focus();
+  }
+
+  render(){
+    return <input ref={this.inputElement} />
+  }
+}
+  ```
+
+## Referências internas - Componente Funcional
+
+Para componentes funcionais você deve utilizar o hook `useRef` para definir a referencia do elemento.
+
+```JS
+import React, { useEffect, useRef } from 'react';
+
+const Component = (props) => {
+  const btn = useRef(null);
+
+  useEffect(() => {
+    btn.current.click();
+  }, []);
+
+  return (<button ref={btn}>Button</button>);
+}
+
+export default Component;
+```
+
+## React Context
+
+Utilizado para passar props para componentes filhos de forma de contexto, sem precisar passar diretamente em cada componente.
+A função createContext pode receber qualquer tipo de dado que será definido como contexto inicial.
+
+```JS
+import React from 'react';
+
+const context = React.createContext({
+  authenticated: false,
+});
+
+export default context;
+```
+
+Quando chamado em um componente, ele deve ser um Wrapper que tem de ser executado como `<Context.Provider>` pois irá fornecer os dados para os componentes abaixo. Ele pode ter um valor padrão, que pode ser passado como `<Context.Provider value={}>` que será o valor padrão do contexto ao ser inicializado.
+
+Usando em um componente como consumidor, o Wrapper tem de ser executado como `<Context.Consumer>`. Para utilizar ele você tem de passar os dados do filho como uma função anônima, a qual o primeiro argumento será o contexto. `(context) => {}`
+
+```JS
+import React, { Component } from 'react';
+
+import AuthContext from '../../context/auth-context';
+
+class Componente extends Component {
+
+  render() {
+    console.log('[Persons.js] rendering...');
+
+    return (
+      <AuthContext.Consumer>
+        {(context) => {
+            this.props.persons.map((person, index) => (
+              <Person
+                key={index}
+                name={person.name}
+                isAuth={context.authenticated}
+              />
+            ));
+        }}
+      </AuthContext.Consumer>
+    );
+  }
+}
+
+export default Componente;
+```
+
+### ContextType - React 16.6+
+
+Inserido na versão 16.6 do React uma nova forma de utilizar o context. Usando uma propiedade estática `static contextType`, você pode definir ela como o context inicial.
+
+#### Class Component
+```JS
+import React, { Component } from 'react';
+
+import AuthContext from '../../context/auth-context';
+
+class Componente extends Component {
+
+static contextType = AuthContext;
+
+  render() {
+    console.log('[Persons.js] rendering...');
+
+    return (this.props.persons.map((person, index) => (
+              <Person
+                key={index}
+                name={person.name}
+                isAuth={this.context.authenticated}
+              />
+            )));
+  }
+}
+
+export default Componente;
+```
+
+#### Functional Component
+
+```JS
+import React, { useContext } from 'react';
+
+import AuthContext from '../../context/auth-context';
+
+const Component = (props) => {
+  const authContext = useContext(AuthContext);
+
+  return (<button ref={btn}>Button</button>);
+}
+
+export default Component;
+```
+
 
 ## Notes
 
