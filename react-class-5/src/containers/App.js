@@ -13,6 +13,7 @@ class App extends Component {
 
     this.state = {
       showPersons: true,
+      showCockpit: true,
       persons: [
         {
           name: 'Heitor',
@@ -39,6 +40,15 @@ class App extends Component {
 
   componentDidMount() {
     console.log('[App.js] componentDidMount()');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate()');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate()');
   }
 
   togglePersons = () => {
@@ -92,11 +102,21 @@ class App extends Component {
 
     return (
       <div className={css.App}>
-        <Cockpit
-          togglePersons={this.togglePersons}
-          addNewPerson={this.addNewPerson}
-          showPersons={this.state.showPersons}
-        />
+        <button
+          onClick={() =>
+            this.setState({ showCockpit: !this.state.showCockpit })
+          }
+        >
+          Toggle CockPit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            togglePersons={this.togglePersons}
+            addNewPerson={this.addNewPerson}
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+          />
+        ) : null}
         <hr />
         {persons}
       </div>

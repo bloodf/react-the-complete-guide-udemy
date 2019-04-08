@@ -3,7 +3,6 @@ import Person from './Person/Person';
 class Persons extends Component {
   // static getDerivedStateFromProps(props, state) {
   //   console.log('[Persons.js] getDerivedStateFromProps');
-
   //   return state;
   // }
 
@@ -22,6 +21,10 @@ class Persons extends Component {
     console.log(snapshot);
   }
   
+  componentWillUnmount(){
+    console.log('[Persons.js] componentWillUnmount');
+  }
+
   render() {
     console.log('[Persons.js] rendering...');
 
