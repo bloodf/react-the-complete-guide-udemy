@@ -1,6 +1,6 @@
 # [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux/)
 
-Status do Curso: 308 de 503
+Status do Curso: 314 de 503
 
 ## Status
 
@@ -19,7 +19,7 @@ Status do Curso: 308 de 503
 13. [X] Forms and Form Validation - 17/17
 14. [X] Redux - 23/23
 15. [X] Adding Redux to our Project - 10/10
-16. [ ] Redux Advanced - 0/16
+16. [ ] Redux Advanced - 7/16
 17. [ ] Redux Advanced: Burger Project - 0/22
 18. [ ] Adding Authentication to our Burger Project - 0/22
 19. [ ] Improving our Burger Project - 0/9
