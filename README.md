@@ -2,7 +2,8 @@
 
 Status do Curso: 226 de 503
 
-# Status
+## Status
+
 1. [x] Getting Started - 10/10
 2. [x] Refreshing Next Generation JavaScript (Optional) - 13/13
 3. [x] Understanding the Base Features & Syntax - 26/26
@@ -13,9 +14,9 @@ Status do Curso: 226 de 503
 8. [X] A Real App: The Burger Builder (Basic Version) - 41/41
 9. [X] Reaching out to the Web (Http / Ajax) - 18/18
 10. [X] Burger Builder Project: Accessing a Server - 10/10
-11. [ ] Multi-Page-Feeling in a Single-Page-App: Routing - 15/34
-12. [ ] Adding Routing to our Burger Project - 0/14
-13. [ ] Forms and Form Validation - 0/17
+11. [X] Multi-Page-Feeling in a Single-Page-App: Routing - 34/34
+12. [X] Adding Routing to our Burger Project - 14/14
+13. [X] Forms and Form Validation - 17/17
 14. [ ] Redux - 0/23
 15. [ ] Adding Redux to our Project - 0/10
 16. [ ] Redux Advanced - 0/16
