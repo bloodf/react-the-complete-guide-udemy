@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import './Blog.css';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import Posts from './Posts/Posts';
+import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
+import './Blog.css';
 
 class Blog extends Component {
   render() {
@@ -10,18 +13,30 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <a href='/'>Home</a>
+                <NavLink exact to='/'>
+                  Home
+                </NavLink>
               </li>
               <li>
-                <a href='/new-post'>New Post</a>
-              </li>
-              <li>
-                <a href='/'>Home</a>
+                <NavLink
+                  exact
+                  to={{
+                    pathname: '/new-post',
+                    hash: '#submit',
+                    search: '?quick-submit=true',
+                  }}
+                >
+                  New Post
+                </NavLink>
               </li>
             </ul>
           </nav>
         </header>
-        <Posts />
+        <Route path='/' exact component={Posts} />
+        <Switch>
+          <Route path='/new-post' exact component={NewPost} />
+          <Route path='/post/:id' exact component={FullPost} />
+        </Switch>
       </div>
     );
   }
