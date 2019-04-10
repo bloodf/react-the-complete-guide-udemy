@@ -19,17 +19,17 @@ Status do Curso: 314 de 503
 13. [X] Forms and Form Validation - 17/17
 14. [X] Redux - 23/23
 15. [X] Adding Redux to our Project - 10/10
-16. [ ] Redux Advanced - 7/16
-17. [ ] Redux Advanced: Burger Project - 0/22
-18. [ ] Adding Authentication to our Burger Project - 0/22
-19. [ ] Improving our Burger Project - 0/9
+16. [X] Redux Advanced - 16/16
+17. [X] Redux Advanced: Burger Project - 22/22
+18. [X] Adding Authentication to our Burger Project - 22/22
+19. [X] Improving our Burger Project - 9/9
 20. [ ] Testing - 0/12
-21. [ ] Deploying the App to the Web - 0/6
-22. [ ] Bonus: Working with Webpack - 0/20
-23. [ ] Bonus: Next.js - 0/10
-24. [ ] Bonus: Animations in React Apps - 0/16
+21. [X] Deploying the App to the Web - 6/6
+22. [X] Bonus: Working with Webpack - 20/20
+23. [X] Bonus: Next.js - 10/10
+24. [X] Bonus: Animations in React Apps - 16/16
 25. [ ] Bonus: A Brief Introduction to Redux Saga - 0/13
 26. [ ] React Hooks - 0/26
-27. [ ] Using Hooks in the Burger Builder - 0/13
-28. [ ] Bonus: Building the Burger CSS - 0/1
-29. [ ] Next Steps and Course Roundup - 0/10
+27. [X] Using Hooks in the Burger Builder - 13/13
+28. [X] Bonus: Building the Burger CSS - 1/1
+29. [X] Next Steps and Course Roundup - 10/10
