@@ -23,7 +23,7 @@ Status do Curso: 377 de 503
 17. [X] Redux Advanced: Burger Project - 22/22
 18. [X] Adding Authentication to our Burger Project - 22/22
 19. [X] Improving our Burger Project - 9/9
-20. [ ] Testing - 0/12
+20. [X] Testing - 12/12
 21. [X] Deploying the App to the Web - 6/6
 22. [X] Bonus: Working with Webpack - 20/20
 23. [X] Bonus: Next.js - 10/10
