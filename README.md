@@ -1,6 +1,6 @@
 # [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux/)
 
-Status do Curso: 377 de 503
+Status do Curso: 503 de 503
 
 ## Status
 
@@ -28,8 +28,8 @@ Status do Curso: 377 de 503
 22. [X] Bonus: Working with Webpack - 20/20
 23. [X] Bonus: Next.js - 10/10
 24. [X] Bonus: Animations in React Apps - 16/16
-25. [ ] Bonus: A Brief Introduction to Redux Saga - 0/13
-26. [ ] React Hooks - 0/26
+25. [X] Bonus: A Brief Introduction to Redux Saga - 0/13
+26. [X] React Hooks - 0/26
 27. [X] Using Hooks in the Burger Builder - 13/13
 28. [X] Bonus: Building the Burger CSS - 1/1
 29. [X] Next Steps and Course Roundup - 10/10
